@@ -1,0 +1,59 @@
+{
+  "name": "gpt-luna-pet",
+  "version": "1.3.0",
+  "private": true,
+  "description": "gpt-luna-pet — LUNA two-form transparent desktop pet (B/C)",
+  "author": "WB40",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "preview": "node server.js",
+    "test": "node tests/core.test.js",
+    "package": "electron-builder --win portable --x64"
+  },
+  "devDependencies": {
+    "electron": "39.8.10",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "wb40.gpt-luna-pet",
+    "productName": "LUNA桌宠",
+    "asar": true,
+    "npmRebuild": false,
+    "compression": "maximum",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "index.html",
+      "styles.css",
+      "core.js",
+      "app.js",
+      "main.js",
+      "preload.js",
+      "package.json",
+      "assets/sprites/b-idle.png",
+      "assets/sprites/b-scratch.png",
+      "assets/sprites/b-sleep.png",
+      "assets/sprites/c-native.png",
+      "assets/sprites/wings/b-wing-*.png",
+      "assets/bubble-cloud.svg",
+      "assets/audio/duck-squeak.mp3",
+      "assets/app-icon.png",
+      "assets/tray-icon.ico",
+      "assets/tray-icon.png"
+    ],
+    "win": {
+      "icon": "assets/tray-icon.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "LUNA桌宠-${version}.exe"
+    }
+  }
+}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2a2338">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'">
+  <title>gpt-luna-pet · LUNA 桌宠</title>
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="pet" class="pet" role="button" tabindex="0" aria-label="LUNA 桌宠，单击捏一捏，拖动移动位置">
+    <div id="pet-scale" class="pet-scale">
+      <div class="ground-shadow" aria-hidden="true"></div>
+      <div id="squash" class="squash">
+        <div id="animator" class="animator" data-state="b-idle">
+          <div id="flip" class="flip">
+            <div id="motion" class="motion">
+              <img id="sprite" class="sprite" src="assets/sprites/b-idle.png" alt="站立发呆的 LUNA" draggable="false">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sleep-zs" class="sleep-zs" aria-hidden="true"></div>
+      <button id="alarm-button" class="alarm-button" type="button" aria-label="闹钟：叫醒 LUNA" title="闹钟">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M12 10 5 17M36 10l7 7M10 30a14 14 0 1 0 28 0 14 14 0 0 0-28 0Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M24 20v10l7 4M17 4h5M26 4h5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div id="hammer" class="hammer" aria-hidden="true">
+        <svg viewBox="0 0 130 130">
+          <rect x="57" y="48" width="16" height="68" rx="8" fill="#b88bd6" stroke="#6f3f8f" stroke-width="3"/>
+          <rect x="18" y="18" width="88" height="37" rx="17" fill="#f0b5d2" stroke="#6f3f8f" stroke-width="3.5"/>
+          <path d="M33 25c9-3 18-3 26 0M76 48c9 0 17-3 21-8" fill="none" stroke="#fff4fb" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+          <circle cx="63" cy="112" r="4.5" fill="#d8b5ed"/>
+        </svg>
+      </div>
+      <div id="bonk" class="bonk" aria-hidden="true"><span>碰！</span></div>
+      <div id="c-thought" class="thought-bubble" role="button" tabindex="0" aria-label="C 形态思考气泡，点击查看下一句" aria-hidden="true">
+        <span id="bubble-text" class="bubble-text"></span>
+        <span class="bubble-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+      <button id="settings-gear" class="settings-gear" type="button" aria-label="打开桌宠设置" title="桌宠设置">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.8 3.2h4.4l.6 2.1c.5.2 1 .5 1.4.8l2.1-.6 2.2 3.8-1.6 1.5v1.7l1.6 1.5-2.2 3.8-2.1-.6c-.4.3-.9.6-1.4.8l-.6 2.1H9.8L9.2 18c-.5-.2-1-.5-1.4-.8l-2.1.6-2.2-3.8 1.6-1.5v-1.7L3.5 9.3l2.2-3.8 2.1.6c.4-.3.9-.6 1.4-.8l.6-2.1Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="11.7" r="2.7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <aside id="settings-panel" class="settings-panel" aria-label="桌宠设置" aria-hidden="true">
+    <header class="panel-header">
+      <div>
+        <div class="eyebrow">DESKTOP COMPANION</div>
+        <h1>LUNA <span>桌宠设置</span></h1>
+      </div>
+      <button id="close-settings" class="icon-button" type="button" aria-label="关闭设置">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="panel-scroll">
+      <section class="setting-section">
+        <div class="section-title"><span>01</span> 形态与动作</div>
+        <div class="form-tabs" role="group" aria-label="切换形态">
+          <button class="form-tab active" data-form="B" type="button"><b>B</b><span>LUNA</span></button>
+          <button class="form-tab" data-form="C" type="button"><b>C</b><span>泡面</span></button>
+        </div>
+        <p class="form-switch-note">B：发呆、飞起来、工作（也许？）、寝了</p>
+        <label class="select-label" for="state-select">当前动作</label>
+        <select id="state-select"></select>
+        <label class="range-row scale-row">
+          <span>整体缩放 <output data-output="scale">85%</output></span>
+          <input data-setting="scale" type="range" min="0.5" max="1" step="0.01" value="0.85">
+        </label>
+        <p class="section-note form-note">A 形态暂时停用；C 独立上下压缩回弹，每 4.2 秒自动换句，点击气泡可立即下一句。</p>
+      </section>
+
+      <section class="setting-section">
+        <div class="section-title"><span>02</span> 寻路系统</div>
+        <label class="range-row">
+          <span>移动速度 <output data-output="speed">24 px/s</output></span>
+          <input data-setting="speed" type="range" min="10" max="80" step="1" value="24">
+        </label>
+        <label class="range-row">
+          <span>中途改向频率 <output data-output="changeRate">0.05 /s</output></span>
+          <input data-setting="changeRate" type="range" min="0.05" max="0.5" step="0.01" value="0.05">
+        </label>
+        <label class="range-row">
+          <span>目的地距离上限 <output data-output="maxDistance">220 px</output></span>
+          <input data-setting="maxDistance" type="range" min="50" max="800" step="10" value="220">
+        </label>
+      </section>
+
+      <section class="setting-section">
+        <div class="section-title"><span>03</span> 停留与休息</div>
+        <label class="range-row">
+          <span>停留概率 <output data-output="pauseChance">6%</output></span>
+          <input data-setting="pauseChance" type="range" min="0.01" max="0.3" step="0.01" value="0.06">
+        </label>
+        <label class="range-row">
+          <span>最短停留 <output data-output="stayMin">1.50 s</output></span>
+          <input data-setting="stayMin" type="range" min="0.05" max="10" step="0.05" value="1.5">
+        </label>
+        <label class="range-row">
+          <span>最长停留 <output data-output="stayMax">4.00 s</output></span>
+          <input data-setting="stayMax" type="range" min="0.05" max="10" step="0.05" value="4">
+        </label>
+        <p class="section-note">触发停留时，60% 概率切换至 B 形态睡觉。</p>
+      </section>
+
+      <section class="setting-section">
+        <div class="section-title"><span>04</span> 演出与气泡</div>
+        <label class="select-label" for="c-bounce-mode">C 弹动方式</label>
+        <select id="c-bounce-mode" data-appearance="cBounceMode">
+          <option value="squash">上下压缩（85%）</option>
+          <option value="uniform">等比缩放</option>
+          <option value="off">关闭弹动</option>
+        </select>
+        <label class="select-label" for="b-thought-mode">B 变身气泡</label>
+        <select id="b-thought-mode" data-appearance="bThoughtMode">
+          <option value="random">随机播放</option>
+          <option value="sequential">顺序播放</option>
+        </select>
+        <label class="select-label" for="c-thought-mode">C 歌词播放</label>
+        <select id="c-thought-mode" data-appearance="cThoughtMode">
+          <option value="sequential">顺序播放</option>
+          <option value="random">随机播放</option>
+        </select>
+        <p class="section-note">气泡文本在程序目录的 <code>thoughts.json</code> 中按行修改，重启或保存设置后重新读取。</p>
+      </section>
+
+      <section class="interaction-note">
+        <div><i></i><span>单击</span><b>Q 弹 + 捏捏音效</b></div>
+        <div><i></i><span>单击</span><b>15% 概率随机变身</b></div>
+        <div><i></i><span>形态权重</span><b>B 50% · C 50%</b></div>
+      </section>
+      <p id="settings-error" class="settings-error" role="alert"></p>
+    </div>
+
+    <footer class="panel-footer">
+      <button id="reset-settings" class="text-button" type="button">恢复保守参数</button>
+      <button id="save-settings" class="primary-button" type="button">保存并应用</button>
+    </footer>
+    <div class="panel-meta"><span id="settings-status">首次运行 · 保守参数</span><button id="quit-pet" type="button" hidden>退出桌宠</button></div>
+    <div id="app-version" class="app-version">gpt-luna-pet v1.3.0</div>
+  </aside>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
