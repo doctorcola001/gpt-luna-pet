@@ -8,8 +8,8 @@ Windows 10/11 x64 透明桌宠，使用 Electron 构建。当前开放 B、C 两
 
 在 [Releases](https://github.com/doctorcola001/gpt-luna-pet/releases) 下载 Windows x64 版本：
 
-- **安装版**：下载 `LUNA桌宠-安装程序.exe`，运行安装程序。
-- **便携版**：下载 `LUNA桌宠-程序包.zip`，解压后保持整个程序文件夹完整，双击其中的 `LUNA桌宠.exe`。
+- **安装版**：下载 `LUNA-1.3.1-setup.exe`，运行安装程序。
+- **便携版**：下载 `LUNA-1.3.1-portable.zip`，解压后保持整个程序文件夹完整，双击其中的 `LUNA桌宠.exe`。
 
 ## 功能概览
 
