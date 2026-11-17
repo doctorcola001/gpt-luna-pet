@@ -4,6 +4,13 @@ LUNA 桌宠项目正式仓库名称为 **gpt-luna-pet**，设置界面仍保留�
 
 Windows 10/11 x64 透明桌宠，使用 Electron 构建。当前开放 B、C 两套形态，A 形态仍处于停用归档状态。
 
+## 下载
+
+在 [Releases](https://github.com/doctorcola001/gpt-luna-pet/releases) 下载 Windows x64 版本：
+
+- **安装版**：下载 `LUNA桌宠-安装程序.exe`，运行安装程序。
+- **便携版**：下载 `LUNA桌宠-程序包.zip`，解压后保持整个程序文件夹完整，双击其中的 `LUNA桌宠.exe`。
+
 ## 功能概览
 
 - 透明无边框桌宠，置顶、可拖动、可开关设置面板。
@@ -80,3 +87,22 @@ Electron 端到端测试位于 `tests\browser.test.js`，需要 Playwright，并
 - `installer`：Inno Setup 安装脚本。
 
 更完整的实现和构建说明见 `docs/开发说明.md`，迭代过程见 `docs/开发日志.md`。
+
+## 鸣谢
+
+感谢以下工具和伙伴为项目提供助力：
+
+- GPT Image 2
+- GPT Image 2.5 Flare
+- GPT Image 2.5 Sunburst
+- DeepSeek V4.1 Flash（大肥鱼）
+- GPT 6.1 Terra（小龙）
+- Gemini 3.7 Flash（哈基米）
+- Nano Banana
+- Adobe Photoshop
+
+## 许可
+
+本项目中由项目作者拥有并有权授权的内容，以 [知识共享署名-非商业性使用 4.0 国际许可协议（CC BY-NC 4.0）](https://creativecommons.org/licenses/by-nc/4.0/deed.zh-hans)发布。使用者须署名，且不得用于商业目的；分享或改编时还须遵守该协议的其他条款。
+
+第三方软件、素材及其商标的权利和许可不受上述声明改变，使用时请遵循各自适用的条款。CC BY-NC 4.0 包含非商业限制，不属于开源软件许可证。
