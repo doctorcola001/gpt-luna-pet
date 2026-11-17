@@ -13,16 +13,16 @@
     B: {
       label: "LUNA B",
       states: [
-        { id: "b-idle", label: "原图 · 站立发呆（静止）", file: "assets/sprites/b-idle.png" },
-        { id: "b-wings", label: "俯身扇动翅膀 · 24 帧循环", file: "assets/sprites/wings/b-wing-01.png" },
-        { id: "b-scratch", label: "坐在地上拿纸挠头", file: "assets/sprites/b-scratch.png" },
-        { id: "b-sleep", label: "盖被子戴眼罩睡觉", file: "assets/sprites/b-sleep.png" }
+        { id: "b-idle", label: "发呆", file: "assets/sprites/b-idle.png" },
+        { id: "b-wings", label: "飞起来", file: "assets/sprites/wings/b-wing-01.png" },
+        { id: "b-scratch", label: "工作（也许？）", file: "assets/sprites/b-scratch.png" },
+        { id: "b-sleep", label: "寝了", file: "assets/sprites/b-sleep.png" }
       ]
     },
     C: {
       label: "泡面 C",
       states: [
-        { id: "c-noodle", label: "原生造型 · 保持 Q 弹", file: "assets/sprites/c-native.png" }
+        { id: "c-noodle", label: "保持 Q 弹", file: "assets/sprites/c-native.png" }
       ]
     }
   };

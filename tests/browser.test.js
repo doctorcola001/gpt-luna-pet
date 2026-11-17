@@ -35,9 +35,9 @@ const path = require("node:path");
   assert.equal(await page.locator("#c-bounce-mode option").count(), 3);
   assert.equal(await page.locator("#b-thought-mode option").count(), 2);
   assert.equal(await page.locator("#c-thought-mode option").count(), 2);
-  await page.waitForFunction(() => document.getElementById("app-version").textContent.includes("v1.3.0"));
-  assert.equal(await page.locator("#app-version").textContent(), "gpt-luna-pet v1.3.0");
-  assert.equal(await page.locator(".form-switch-note").textContent(), "B：发呆、飞起来、工作（也许？）、寝了");
+  await page.waitForFunction(() => document.getElementById("app-version").textContent.includes("v1.3.1"));
+  assert.equal(await page.locator("#app-version").textContent(), "gpt-luna-pet v1.3.1");
+  assert.deepEqual(await page.locator("#state-select option").evaluateAll(options => options.map(option => option.textContent)), ["发呆", "飞起来", "工作（也许？）", "寝了"]);
 
   const pet = page.locator("#pet");
   async function pointAtPet() {
@@ -131,6 +131,7 @@ const path = require("node:path");
 
   await page.locator("[data-form=\"C\"]").click();
   await page.waitForFunction(() => document.getElementById("animator").dataset.state === "c-noodle", null, { timeout: 3000 });
+  assert.equal(await page.locator("#state-select option").first().textContent(), "保持 Q 弹");
   assert.ok((await page.locator("#sprite").getAttribute("src")).endsWith("c-native.png"));
   assert.equal(await page.locator("#motion").evaluate(element => getComputedStyle(element).animationName), "none");
   const cBounce = await page.evaluate(() => {

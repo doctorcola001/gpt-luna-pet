@@ -1,5 +1,5 @@
 ﻿#define MyAppName "LUNA桌宠"
-#define MyAppVersion "1.3.0"
+#define MyAppVersion "1.3.1"
 #define MyAppPublisher "WB40"
 #define MyAppExeName "LUNA桌宠.exe"
 #define MyAppId "{{1BB42E46-221C-4E47-85B5-0B5C4DB25639}"
@@ -26,7 +26,7 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 CloseApplications=yes
 RestartApplications=no
-VersionInfoVersion=1.3.0.0
+VersionInfoVersion=1.3.1.0
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
 VersionInfoDescription={#MyAppName} 安装程序

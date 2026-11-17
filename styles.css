@@ -225,9 +225,9 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
   left: 50%;
   bottom: calc(100% - 38px);
   width: max-content;
-  min-width: 180px;
-  max-width: 380px;
-  padding: 20px 31px 22px;
+  min-width: 144px;
+  max-width: 470px;
+  padding: 22px 44px 26px;
   color: #65298d;
   background: url("assets/bubble-cloud.svg") center / 100% 100% no-repeat;
   font-size: 20px;
@@ -235,6 +235,7 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
   line-height: 1.55;
   letter-spacing: .2px;
   text-align: center;
+  overflow-wrap: anywhere;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
@@ -369,7 +370,6 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px s
 .section-title { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; font-size: 12px; font-weight: 600; letter-spacing: .5px; }
 .section-title span { color: #947bab; font-family: Georgia, serif; font-size: 10px; font-weight: 400; }
 .form-tabs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
-.form-switch-note { margin: 8px 0 0; color: #b8a4ca; font-size: 9.5px; line-height: 1.5; letter-spacing: .2px; }
 .form-note { margin-top: 11px; color: #9c89ad; }
 .section-note code { color: #cdb4e5; font-family: Consolas, "SFMono-Regular", monospace; font-size: 9px; }
 .form-tab {
